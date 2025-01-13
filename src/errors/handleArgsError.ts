@@ -1,6 +1,10 @@
 import { Args } from "https://deno.land/std@0.200.0/flags/mod.ts";
 
-export function handleArgsError(parsedArgs: Args) {
+export function handleArgsError(parsedArgs: Args): void {
+  if ("clear-cache" in parsedArgs) {
+    return;
+  }
+
   if (!parsedArgs.origin) {
     console.error(
       "[Error]: The 'origin' argument is required. Please provide it using '--origin http://your-origin.com'."
