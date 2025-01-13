@@ -18,7 +18,6 @@ export function createRouter(origin: string) {
 
     if (!cachedProducts) {
       await client.set(cacheKey, JSON.stringify(products));
-      await client.quit();
     }
 
     ctx.response.status = 200;
