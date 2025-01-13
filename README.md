@@ -2,7 +2,9 @@
 
 ## Overview
 This project implements a caching proxy server CLI tool built with Deno and Oak. The proxy server forwards requests to an origin server, caches the responses, and serves subsequent identical requests from the cache to improve performance and reduce load on the origin server.
-Note: This is a side project and is not intended for production use.
+
+**Note**: This is a side project and is not intended for production use.
+
 ## Features
 - Starts a caching proxy server on a specified port.
 - Forwards requests to an origin server and caches responses.
@@ -46,7 +48,7 @@ Note: This is a side project and is not intended for production use.
 ### Start the Proxy Server
 To start the caching proxy server, use the following command:
 ```bash
-caching-proxy --port <number> --origin <url>
+denon run --allow-net src/main.ts --port <number> --origin <url>
 ```
 
 - **`--port`**: Specifies the port on which the proxy server will run.
@@ -54,14 +56,14 @@ caching-proxy --port <number> --origin <url>
 
 **Example**:
 ```bash
-caching-proxy --port 3000 --origin http://dummyjson.com/products
+denon run --allow-net src/main.ts --port 3000 --origin "http://dummyjson.com/products"
 ```
 This starts the proxy server on port 3000 and forwards requests to `http://dummyjson.com/products`.
 
 ### Clear the Cache
 To clear the cache, use the `--clear-cache` option:
 ```bash
-caching-proxy --clear-cache
+deno run --allow-net src/main.ts --clear-cache
 ```
 This clears all cached responses and exits the program.
 
@@ -87,17 +89,15 @@ src/
 ### Running in Development
 To run the server in development mode:
 ```bash
-deno run --allow-net src/main.ts --port 3000 --origin http://dummyjson.com/products
+denon run --allow-net src/main.ts --port 3000 --origin "http://dummyjson.com/products"
 ```
 
 ### Permissions
 This project requires the following permissions:
 - `--allow-net`: To allow network access for the proxy server and Redis.
-- `--allow-env`: To access environment variables.
 
 ## Future Improvements
 - Implement logging for request and cache activity.
 - Implement caching strategy to optimize cache usage (e.g., Least Recently Used (LRU), Least Frequently Used (LFU), time-to-live (TTL) based caching).
-
 ---
 
